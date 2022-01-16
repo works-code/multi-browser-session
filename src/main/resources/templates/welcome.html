@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>spring security multiple users sessions in single browser</title>
+</head>
+<body>
+Hi, <span th:text="${currentLoginUser}"></span> (<a th:href="@{|/logout?_s=${currentLoginUserKey}|}">Logout</a> )
+<br/>
+<br/>
+<b> <span th:text="${currentLoginUser}"/></b>
+<hr/>
+    <ul th:each="user : ${currentLoginUsers}">
+        <li> Switch To : <a th:href="@{|/loginSuccess?_s=${user.key}|}"><span th:text="${user.value}"/></a>
+        </li>
+    </ul>
+<hr/>
+<br/>
+<a th:href="@{|/login?_s=1|}">Add Another Account</a>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>spring security multiple users sessions in single browser</title>
+</head>
+<body>
+<form name='f' th:action="@{|/login?_s=${s}|}" method='POST'>
+    User: <input type='text' name='username' value=''/>
+    Password: <input type='password' name='password'/>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    <input name="submit" type="submit" value="Login"/>
+</form>
+    <ul th:each="user : ${currentLoginUsers}">
+        <li> Switch To : <a th:href="@{|/loginSuccess?_s=${user.key}|}"><span th:text="${user.value}"/></a></li>
+    </ul>
+</body>
+</html>
